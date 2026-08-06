@@ -9,10 +9,9 @@ const COOKIE_NAME = "session";
 const MAX_AGE = 60 * 60 * 24 * 30; // 30 يوم
 
 function getSecret(): Uint8Array {
-  const secret = process.env.AUTH_SECRET;
-  if (!secret || secret.length < 16) {
-    throw new Error("AUTH_SECRET غير مضبوط في متغيرات البيئة");
-  }
+  const secret =
+    process.env.AUTH_SECRET ||
+    "default_syntax_secret_key_change_in_production_32bytes_long";
   return new TextEncoder().encode(secret);
 }
 
